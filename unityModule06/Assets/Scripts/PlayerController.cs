@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     InputController inputController = new();
@@ -21,13 +20,15 @@ public class PlayerController : MonoBehaviour
         {
             inputController.AddInput(label, new KeyInput(inputs[label]));
         }
-        Rigidbody rb = GetComponent<Rigidbody>();
         Animator animator = GetComponent<Animator>();
-
-        bodyController = new(rb);
+        bodyController = new(transform);
         animationController = new(() =>
         {
-            animator.SetFloat("Velocity", rb.linearVelocity.magnitude);
+            bool isWalk = inputController.Get("Left")
+                || inputController.Get("Forward")
+                || inputController.Get("Right")
+                || inputController.Get("Back");
+            animator.SetBool("Walking", isWalk);
         });
     }
 

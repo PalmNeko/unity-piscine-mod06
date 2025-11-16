@@ -2,31 +2,37 @@ using UnityEngine;
 
 public class BodyController
 {
-    Rigidbody rb;
-    float speed = 10.0f;
+    Transform transform;
+    float speed = 0.1f;
 
-    public BodyController(Rigidbody rb)
+    public BodyController(Transform transform)
     {
-        this.rb = rb;
+        this.transform = transform;
     }
 
     public void ToLeft()
     {
-        rb.AddForce(Vector3.left * speed);
+        RotateTo(Vector3.left);
     }
 
     public void ToRight()
     {
-        rb.AddForce(Vector3.right * speed);
+        RotateTo(Vector3.right);
     }
 
     public void ToBack()
     {
-        rb.AddForce(Vector3.back * speed);
+        RotateTo(Vector3.back);
     }
 
     public void ToForward()
     {
-        rb.AddForce(Vector3.forward * speed);
+        RotateTo(Vector3.forward);
+    }
+
+    private void RotateTo(Vector3 direction)
+    {
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed);
     }
 }
