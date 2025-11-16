@@ -12,27 +12,27 @@ public class BodyController
 
     public void ToLeft()
     {
-        RotateTo(Vector3.left);
+        RotateTo(- Camera.main.transform.right);
     }
 
     public void ToRight()
     {
-        RotateTo(Vector3.right);
+        RotateTo(Camera.main.transform.right);
     }
 
     public void ToBack()
     {
-        RotateTo(Vector3.back);
+        RotateTo(- Camera.main.transform.forward);
     }
 
     public void ToForward()
     {
-        RotateTo(Vector3.forward);
+        RotateTo(Camera.main.transform.forward);
     }
 
     private void RotateTo(Vector3 direction)
     {
-        Quaternion rotation = Quaternion.LookRotation(direction);
+        Quaternion rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed);
     }
 }
