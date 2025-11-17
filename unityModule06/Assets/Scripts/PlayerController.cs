@@ -7,12 +7,12 @@ public class PlayerController : MonoBehaviour
     public GameObject TPSCamera;
     public GameObject FPSCamera;
     public Ending ending_ui;
+    public int keyCount = 0;
     InputController inputController = new();
     BodyController bodyController;
     AnimationController animationController;
     bool isShowClear;
     bool canMove = true;
-    int keyCount = 0;
 
     void OnEnable()
     {

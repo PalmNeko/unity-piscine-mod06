@@ -1,0 +1,10 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="width: 160px; height: 50px; right: 10px; top: 10px; position: absolute; background-color: rgba(118, 159, 93, 0.75); flex-direction: row; padding-left: 10px; padding-top: 10px; padding-right: 10px; padding-bottom: 10px;">
+        <ui:VisualElement style="background-image: url(&quot;project://database/Assets/Textures/UI/%E9%8D%B5%E3%81%AE%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B38.png?fileID=2800000&amp;guid=f295b87eb2abf8c4cbdae9447f78b12e&amp;type=3#鍵のアイコン8&quot;); -unity-background-scale-mode: scale-to-fit; flex-grow: 1;" />
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center;">
+            <ui:Label text="1" name="KeyCount" />
+            <ui:Label text="/" />
+            <ui:Label text="3" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
