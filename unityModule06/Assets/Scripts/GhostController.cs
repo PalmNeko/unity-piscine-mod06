@@ -4,6 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class GhostController : MonoBehaviour
 {
+    static public bool emergencyMode;
     public Transform target;
     public Animator animator;
     public float detectRange = 3.0f;
@@ -26,11 +27,17 @@ public class GhostController : MonoBehaviour
         {
             agent.SetDestination(target.position);
             returnTime = Time.time + 3.0f;
+            if (GhostController.emergencyMode)
+            {
+                returnTime += 10f;
+            }
         }
         else
         {
             if (Time.time > returnTime)
+            {
                 agent.SetDestination(initialPosition);
+            }
         }
         if (agent.velocity.magnitude != 0f)
         {
@@ -53,6 +60,8 @@ public class GhostController : MonoBehaviour
     // ターゲットとの距離、壁があれば、無限
     private bool ShouldTrace()
     {
+        if (GhostController.emergencyMode)
+            return true;
         RaycastHit hitInfo = new();
         Vector3 direct = target.position - transform.position;
         float angle = Vector3.Angle(transform.forward, direct);
