@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
     InputController inputController = new();
     BodyController bodyController;
     AnimationController animationController;
+    bool isShowClear;
     bool canMove = true;
+    int keyCount = 0;
 
     void OnEnable()
     {
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         ending_ui.gameObject.SetActive(false);
+        keyCount = 0;
+        isShowClear = false;
     }
 
     void FixedUpdate()
@@ -81,10 +85,23 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (CanClear())
+        {
+            if (other.gameObject.CompareTag("Finish"))
+            {
+                GameClear();
+            }
+            return ;
+        }
         if (canMove && other.gameObject.CompareTag("Respawn"))
         {
             canMove = false;
             GameOver();
+        }
+        if (other.CompareTag("Key"))
+        {
+            keyCount += 1;
+            Destroy(other.gameObject);
         }
     }
 
@@ -99,8 +116,22 @@ public class PlayerController : MonoBehaviour
         gameOver();
     }
 
-    void GameClear()
+    public void GameClear()
     {
-        Debug.Log("Clear");
+        if (isShowClear)
+            return;
+        isShowClear = true;
+        Action gameClear = async () => {
+            ending_ui.gameObject.SetActive(true);
+            ending_ui.SetImage(ImageType.GameClearImage);
+            await ending_ui.FadeIn();
+            ending_ui.canRestart = true;
+        };
+        gameClear();
+    }
+
+    public bool CanClear()
+    {
+        return keyCount >= 3;
     }
 }

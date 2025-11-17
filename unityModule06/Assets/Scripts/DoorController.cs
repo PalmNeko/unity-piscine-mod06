@@ -31,6 +31,8 @@ public class DoorController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (enabled == false)
+            return ;
         if (isOpend == false)
         {
             animator.SetTrigger("Open");
