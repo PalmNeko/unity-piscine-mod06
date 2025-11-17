@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Image" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Textures/UI/Caught.png?fileID=2800000&amp;guid=85d46c7add1129741a0d78fadba6998e&amp;type=3#Caught&quot;); -unity-background-scale-mode: scale-to-fit;">
+        <ui:VisualElement name="Overlay" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject TPSCamera;
+    public GameObject FPSCamera;
     InputController inputController = new();
     BodyController bodyController;
     AnimationController animationController;
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
             {"Right", () => Input.GetKey("d")},
             {"Forward", () => Input.GetKey("w")},
             {"Back", () => Input.GetKey("s")},
+            {"ToggleCamera", () => Input.GetKeyDown("c")},
         };
         foreach (string label in inputs.Keys)
         {
@@ -55,6 +58,20 @@ public class PlayerController : MonoBehaviour
     {
         inputController.Update();
         animationController.Update();
+
+        if (inputController.Get("ToggleCamera"))
+        {
+            TPSCamera.SetActive(!TPSCamera.activeSelf);
+            FPSCamera.SetActive(!FPSCamera.activeSelf);
+            if (FPSCamera.activeSelf)
+            {
+                Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("Player"));
+            }
+            else
+            {
+                Camera.main.cullingMask |= (1 << LayerMask.NameToLayer("Player"));
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
