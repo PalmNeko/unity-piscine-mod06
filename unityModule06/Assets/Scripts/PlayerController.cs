@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject TPSCamera;
     public GameObject FPSCamera;
+    public Ending ending_ui;
     InputController inputController = new();
     BodyController bodyController;
     AnimationController animationController;
+    bool canMove = true;
 
     void OnEnable()
     {
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
                 || inputController.Get("Forward")
                 || inputController.Get("Right")
                 || inputController.Get("Back");
+            isWalk &= canMove;
             animator.SetBool("Walking", isWalk);
         });
     }
@@ -38,11 +41,13 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        ending_ui.gameObject.SetActive(false);
     }
 
     void FixedUpdate()
     {
+        if (canMove == false)
+            return ;
         if (inputController.Get("Left"))
             bodyController.ToLeft();
         if (inputController.Get("Right"))
@@ -76,9 +81,26 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Respawn"))
+        if (canMove && other.gameObject.CompareTag("Respawn"))
         {
-            Debug.Log("Defeat");
+            canMove = false;
+            GameOver();
         }
+    }
+
+    void GameOver()
+    {
+        Action gameOver = async () => {
+            ending_ui.gameObject.SetActive(true);
+            ending_ui.SetImage(ImageType.GameOverImage);
+            await ending_ui.FadeIn();
+            ending_ui.canRestart = true;
+        };
+        gameOver();
+    }
+
+    void GameClear()
+    {
+        Debug.Log("Clear");
     }
 }

@@ -1450,6 +1450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TPSCamera: {fileID: 1751213893}
   FPSCamera: {fileID: 745034355}
+  ending_ui: {fileID: 542318715}
 --- !u!143 &161439959
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4116,7 +4117,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4947,7 +4948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &542318715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4962,6 +4963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: {fileID: 21300000, guid: 85d46c7add1129741a0d78fadba6998e, type: 3}
   gameClear: {fileID: 21300000, guid: 623a7345ca6d38f4280b86c32ffe7c15, type: 3}
+  canRestart: 0
 --- !u!114 &542318716
 MonoBehaviour:
   m_ObjectHideFlags: 0
