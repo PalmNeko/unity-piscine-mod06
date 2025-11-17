@@ -222,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 4580981631181409925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.534}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -247,8 +247,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.99999964, y: 1.7594352, z: 1.2221032}
-  m_Center: {x: 0, y: -0.10355925, z: -0.31637764}
+  m_Size: {x: 0.99999964, y: 1.7594352, z: 2.04}
+  m_Center: {x: 0, y: -0.10355925, z: -0.26}
 --- !u!114 &4580981631181409923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorWingCollider: {fileID: 4580981630450764248}
   animator: {fileID: 4583669912218963282}
-  pivot: {fileID: 0}
 --- !u!1 &4580981631963507421
 GameObject:
   m_ObjectHideFlags: 0
