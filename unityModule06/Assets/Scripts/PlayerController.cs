@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     BodyController bodyController;
     AnimationController animationController;
 
-    void Awake()
+    void OnEnable()
     {
         Dictionary<string, Func<bool>> inputs = new (){
             {"Left", () => Input.GetKey("a")},
@@ -55,5 +55,13 @@ public class PlayerController : MonoBehaviour
     {
         inputController.Update();
         animationController.Update();
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Respawn"))
+        {
+            Debug.Log("Defeat");
+        }
     }
 }
