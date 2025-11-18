@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     public GameObject FPSCamera;
     public Ending ending_ui;
     public int keyCount = 0;
+    public AudioSource footAudio;
+    public AudioSource gameOverAudio;
+    public AudioSource gameClearAudio;
     InputController inputController = new();
     BodyController bodyController;
     AnimationController animationController;
@@ -37,7 +40,10 @@ public class PlayerController : MonoBehaviour
                 || inputController.Get("Back");
             isWalk &= canMove;
             animator.SetBool("Walking", isWalk);
+            footAudio.enabled = isWalk;
         });
+        gameOverAudio.enabled = false;
+        gameClearAudio.enabled = false;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -114,6 +120,8 @@ public class PlayerController : MonoBehaviour
             ending_ui.canRestart = true;
         };
         gameOver();
+        GameManager.instance.GameOver();
+        gameOverAudio.enabled = true;
     }
 
     public void GameClear()
@@ -128,6 +136,8 @@ public class PlayerController : MonoBehaviour
             ending_ui.canRestart = true;
         };
         gameClear();
+        GameManager.instance.GameClear();
+        gameClearAudio.enabled = true;
     }
 
     public bool CanClear()
