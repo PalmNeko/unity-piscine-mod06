@@ -17,6 +17,7 @@ public class GhostController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         initialPosition = transform.position;
+        emergencyMode = false;
         returnTime = Time.time;
     }
 

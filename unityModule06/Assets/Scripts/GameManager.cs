@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(this);
         instance = this;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void GameOver()
